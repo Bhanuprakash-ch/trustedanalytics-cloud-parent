@@ -31,6 +31,7 @@
         <skip-jacoco-check>false</skip-jacoco-check>
         <jacoco-measurement-instructions>0</jacoco-measurement-instructions>
         <jacoco-measurement-branches>0</jacoco-measurement-branches>
+	<hadoop.version>2.6.0-cdh5.4.2.1</hadoop.version>
     </properties>
 
     <dependencyManagement>
