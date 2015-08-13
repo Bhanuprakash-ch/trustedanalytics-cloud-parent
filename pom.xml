@@ -1,0 +1,116 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.trustedanalytics</groupId>
+    <artifactId>trustedanalytics-cloud-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>0.4.0</version>
+    <name>Spring Boot Parent POM</name>
+
+    <parent>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-parent</artifactId>
+        <version>1.0.1.RELEASE</version>
+    </parent>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <feign.version>8.2.0</feign.version>
+        <cf-client.version>0.4.0</cf-client.version>
+
+        <repository.snapshot.id>snapshots</repository.snapshot.id>
+        <repository.snapshot.name>SnapshotRepository</repository.snapshot.name>
+        <repository.snapshot.url>file:///${user.home}/.m2/snapshots</repository.snapshot.url>
+
+        <repository.release.id>releases</repository.release.id>
+        <repository.release.name>ReleaseRepository</repository.release.name>
+        <repository.release.url>file:///${user.home}/.m2/releases</repository.release.url>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- cf-client -->
+            <dependency>
+                <groupId>org.trustedanalytics</groupId>
+                <artifactId>cf-client</artifactId>
+                <version>${cf-client.version}</version>
+            </dependency>
+            <!-- cf-client -->
+            <!-- feign -->
+            <dependency>
+                <groupId>com.netflix.feign</groupId>
+                <artifactId>feign-core</artifactId>
+                <version>${feign.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.netflix.feign</groupId>
+                <artifactId>feign-jackson</artifactId>
+                <version>${feign.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.netflix.feign</groupId>
+                <artifactId>feign-slf4j</artifactId>
+                <version>${feign.version}</version>
+            </dependency>
+            <!-- feign -->
+        </dependencies>
+    </dependencyManagement>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>${repository.snapshot.id}</id>
+            <name>${repository.snapshot.name}</name>
+            <url>${repository.snapshot.url}</url>
+        </snapshotRepository>
+
+        <repository>
+            <id>${repository.release.id}</id>
+            <name>${repository.release.name}</name>
+            <url>${repository.release.url}</url>
+        </repository>
+    </distributionManagement>
+	
+	<build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+	    <plugins>
+                <plugin>
+                    <groupId>com.mycila</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>2.6</version>
+                    <configuration>   
+                        <header>license/license_header.txt</header>
+                        <includes>
+                            <include>src/**/*.java</include>
+			    <include>src/**/*.html</include>
+			    <include>tools/*.sh</include>
+			    <include>license_checker/*.sh</include>
+		            <include>license/*.sh</include>
+                        </includes>                  
+                    <mapping>
+                        <java>JAVADOC_STYLE</java>
+			<sh>SCRIPT_STYLE</sh>
+			<html>XML_STYLE</html> 
+                    </mapping>
+                 </configuration>
+                 <executions>
+                    <execution>
+                        <id>check-license</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
