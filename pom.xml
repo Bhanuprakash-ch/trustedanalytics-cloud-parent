@@ -17,7 +17,7 @@
     <properties>
         <java.version>1.8</java.version>
         <feign.version>8.2.0</feign.version>
-        <cf-client.version>0.4.1</cf-client.version>
+        <cf-client.version>0.4.3</cf-client.version>
 
         <repository.snapshot.id>snapshots</repository.snapshot.id>
         <repository.snapshot.name>SnapshotRepository</repository.snapshot.name>
