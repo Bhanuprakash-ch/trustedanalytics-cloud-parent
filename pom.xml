@@ -5,7 +5,7 @@
     <groupId>org.trustedanalytics</groupId>
     <artifactId>trustedanalytics-cloud-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.4.3</version>
+    <version>0.4.4</version>
     <name>Spring Boot Parent POM</name>
 
     <parent>
@@ -27,12 +27,19 @@
         <repository.release.name>ReleaseRepository</repository.release.name>
         <repository.release.url>file:///${user.home}/.m2/releases</repository.release.url>
 
+        <git-repository>trustedanalytics-cloud-parent-placeholder</git-repository>
+
         <skip-jacoco>false</skip-jacoco>
         <skip-jacoco-check>false</skip-jacoco-check>
         <jacoco-measurement-instructions>0</jacoco-measurement-instructions>
         <jacoco-measurement-branches>0</jacoco-measurement-branches>
 	<hadoop.version>2.6.0-cdh5.4.2.1</hadoop.version>
     </properties>
+
+    <scm>
+        <connection>scm:git:git@${artifactId}:${git-repository}/${artifactId}.git</connection>
+        <tag>HEAD</tag>
+    </scm>
 
     <dependencyManagement>
         <dependencies>
