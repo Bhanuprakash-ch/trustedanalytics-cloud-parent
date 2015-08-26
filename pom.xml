@@ -5,7 +5,7 @@
     <groupId>org.trustedanalytics</groupId>
     <artifactId>trustedanalytics-cloud-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.4.4</version>
+    <version>0.4.5</version>
     <name>Spring Boot Parent POM</name>
 
     <parent>
@@ -37,7 +37,7 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git@${artifactId}:${git-repository}/${artifactId}.git</connection>
+        <connection>scm:git:git@${artifactId}:${git-repository}</connection>
         <tag>HEAD</tag>
     </scm>
 
