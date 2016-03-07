@@ -5,7 +5,7 @@
     <groupId>org.trustedanalytics</groupId>
     <artifactId>trustedanalytics-cloud-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.5.2</version>
+    <version>0.5.3</version>
     <name>Spring Boot Parent POM</name>
 
     <parent>
@@ -47,7 +47,7 @@
         <repository>
             <id>cloudera</id>
 	    <name>Cloudera Repository</name>
-	    <url>http://repository.cloudera.com/</url>
+	    <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
 	</repository>
     </repositories>
 
