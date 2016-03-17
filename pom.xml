@@ -5,7 +5,7 @@
     <groupId>org.trustedanalytics</groupId>
     <artifactId>trustedanalytics-cloud-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.5.3</version>
+    <version>0.5.4</version>
     <name>Spring Boot Parent POM</name>
 
     <parent>
@@ -48,6 +48,11 @@
             <id>cloudera</id>
 	    <name>Cloudera Repository</name>
 	    <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+	</repository>
+        <repository>
+            <id>spring</id>
+	    <name>Spring Repository</name>
+	    <url>http://maven.springframework.org/milestone/</url>
 	</repository>
     </repositories>
 
