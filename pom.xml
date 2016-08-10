@@ -5,7 +5,7 @@
     <groupId>org.trustedanalytics</groupId>
     <artifactId>trustedanalytics-cloud-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.6.1</version>
+    <version>0.6.2</version>
     <name>Spring Boot Parent POM</name>
 
     <parent>
@@ -29,8 +29,6 @@
 
         <git-repository>trustedanalytics-cloud-parent-placeholder</git-repository>
 
-        <skip-jacoco>false</skip-jacoco>
-        <skip-jacoco-check>false</skip-jacoco-check>
         <jacoco-measurement-instructions>0</jacoco-measurement-instructions>
         <jacoco-measurement-branches>0</jacoco-measurement-branches>
         <jacoco-measurement-lines>0</jacoco-measurement-lines>
@@ -116,60 +114,30 @@
         </pluginManagement>
 	    <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.1</version>
-                <executions>
-                    <execution>
-                        <id>javadoc</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                        <configuration>
-                            <additionalparam>-Xdoclint:none</additionalparam>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.4</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-                <plugin>
-                    <groupId>com.mycila</groupId>
-                    <artifactId>license-maven-plugin</artifactId>
-                    <version>2.6</version>
-                    <configuration>   
-                        <header>license/license_header_2016.txt</header>
-                        <validHeaders>
-			    <validHeader>license/license_header_2015.txt</validHeader>
-        		    <validHeader>license/license_header_2016.txt</validHeader>
-			</validHeaders>
-                        <includes>
-                            <include>src/**/*.java</include>
-			    <include>src/**/*.html</include>
-			    <include>tools/*.sh</include>
-			    <include>license_checker/*.sh</include>
-		            <include>license/*.sh</include>
-			    <include>pack.sh</include>
-                        </includes>                  
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <header>license/license_header_2016.txt</header>
+                    <validHeaders>
+                        <validHeader>license/license_header_2015.txt</validHeader>
+                        <validHeader>license/license_header_2016.txt</validHeader>
+                    </validHeaders>
+                    <includes>
+                        <include>src/**/*.java</include>
+                        <include>src/**/*.html</include>
+                        <include>tools/*.sh</include>
+                        <include>license_checker/*.sh</include>
+                        <include>license/*.sh</include>
+                        <include>pack.sh</include>
+                    </includes>
                     <mapping>
                         <java>JAVADOC_STYLE</java>
-			<sh>SCRIPT_STYLE</sh>
-			<html>XML_STYLE</html> 
+                        <sh>SCRIPT_STYLE</sh>
+                        <html>XML_STYLE</html>
                     </mapping>
-                 </configuration>
-                 <executions>
+                </configuration>
+                <executions>
                     <execution>
                         <id>check-license</id>
                         <phase>initialize</phase>
@@ -179,58 +147,100 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.4.201502262128</version>
-                <configuration>
-                    <skip>${skip-jacoco}</skip>
-                    <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
-                    <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>jacoco-initialize</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>jacoco-site</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>jacoco-check</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <configuration>
-                            <skip>${skip-jacoco-check}</skip>
-                            <rules>
-                                <rule>
-                                    <element>BUNDLE</element>
-                                    <limits>
-                                        <limit>
-                                            <counter>INSTRUCTION</counter>
-                                            <value>COVEREDRATIO</value>
-                                            <minimum>${jacoco-measurement-instructions}</minimum>
-                                        </limit>
-                                        <limit>
-                                            <counter>BRANCH</counter>
-                                            <value>COVEREDRATIO</value>
-                                            <minimum>${jacoco-measurement-branches}</minimum>
-                                        </limit>
-                                    </limits>
-                                </rule>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>jacoco</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>0.7.4.201502262128</version>
+                        <configuration>
+                            <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
+                            <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>jacoco-initialize</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>jacoco-check</id>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <rule>
+                                            <element>BUNDLE</element>
+                                            <limits>
+                                                <limit>
+                                                    <counter>INSTRUCTION</counter>
+                                                    <value>COVEREDRATIO</value>
+                                                    <minimum>${jacoco-measurement-instructions}</minimum>
+                                                </limit>
+                                                <limit>
+                                                    <counter>BRANCH</counter>
+                                                    <value>COVEREDRATIO</value>
+                                                    <minimum>${jacoco-measurement-branches}</minimum>
+                                                </limit>
+                                            </limits>
+                                        </rule>
+                                    </rules>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>jacoco-site</id>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>full-packaging</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.10.1</version>
+                        <executions>
+                            <execution>
+                                <id>javadoc</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                                <configuration>
+                                    <additionalparam>-Xdoclint:none</additionalparam>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.4</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
