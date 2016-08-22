@@ -5,7 +5,7 @@
     <groupId>org.trustedanalytics</groupId>
     <artifactId>trustedanalytics-cloud-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.6.2</version>
+    <version>0.6.3</version>
     <name>Spring Boot Parent POM</name>
 
     <parent>
@@ -29,10 +29,10 @@
 
         <git-repository>trustedanalytics-cloud-parent-placeholder</git-repository>
 
-        <jacoco-measurement-instructions>0</jacoco-measurement-instructions>
-        <jacoco-measurement-branches>0</jacoco-measurement-branches>
-        <jacoco-measurement-lines>0</jacoco-measurement-lines>
-        <jacoco-measurement-classes>0</jacoco-measurement-classes>
+        <jacoco-measurement-instructions>100.0</jacoco-measurement-instructions>
+        <jacoco-measurement-branches>100.0</jacoco-measurement-branches>
+        <jacoco-measurement-lines>100.0</jacoco-measurement-lines>
+        <jacoco-measurement-classes>100.0</jacoco-measurement-classes>
         <hadoop.version>2.6.0-cdh5.5.1</hadoop.version>
     </properties>
 
@@ -189,6 +189,16 @@
                                                     <counter>BRANCH</counter>
                                                     <value>COVEREDRATIO</value>
                                                     <minimum>${jacoco-measurement-branches}</minimum>
+                                                </limit>
+                                                <limit>
+                                                    <counter>LINE</counter>
+                                                    <value>COVEREDRATIO</value>
+                                                    <minimum>${jacoco-measurement-lines}</minimum>
+                                                </limit>
+                                                <limit>
+                                                    <counter>CLASS</counter>
+                                                    <value>COVEREDRATIO</value>
+                                                    <minimum>${jacoco-measurement-classes}</minimum>
                                                 </limit>
                                             </limits>
                                         </rule>
