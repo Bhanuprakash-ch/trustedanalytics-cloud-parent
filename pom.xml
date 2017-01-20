@@ -5,7 +5,7 @@
     <groupId>org.trustedanalytics</groupId>
     <artifactId>trustedanalytics-cloud-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.6.3</version>
+    <version>0.6.4</version>
     <name>Spring Boot Parent POM</name>
 
     <parent>
@@ -37,7 +37,7 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git@${artifactId}:${git-repository}</connection>
+        <connection>scm:git:git@${project.artifactId}:${git-repository}</connection>
         <tag>HEAD</tag>
     </scm>
 
@@ -61,13 +61,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- cf-client -->
-            <dependency>
-                <groupId>org.trustedanalytics</groupId>
-                <artifactId>cf-client</artifactId>
-                <version>${cf-client.version}</version>
-            </dependency>
-            <!-- cf-client -->
             <!-- feign -->
             <dependency>
                 <groupId>com.netflix.feign</groupId>
